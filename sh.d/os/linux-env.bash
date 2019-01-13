@@ -1,8 +1,8 @@
 ### Config
-MPD_HOST=duckwho
+MPD_HOST=$USER
 QT_QPA_PLATFORMTHEME="qt5ct"
 XDG_CONFIG_HOME=$HOME/.config
-MAIL=/var/mail/duckwho
+MAIL=/var/mail/$USER
 W3MIMGDISPLAY_PATH=$HOME/bin/misc/w3mfix
 ABDUCO_CMD="dvtm -m ^o"
 UNZIP="-O cp949"
