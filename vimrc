@@ -4,36 +4,18 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'dylanaraps/wal.vim'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-fugitive'
+  Plug 'itchyny/lightline.vim'
   Plug 'tpope/vim-commentary'
-  " Plug 'jiangmiao/auto-pairs'
+  Plug 'jiangmiao/auto-pairs'
   Plug 'rakr/vim-one'
-  " Plug 'itchyny/lightline.vim'
-  "
-  Plug 'vim-airline/vim-airline'
-  " Plug 'morhetz/gruvbox'
   Plug 'jceb/vim-orgmode'
   Plug 'easymotion/vim-easymotion'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'mrtazz/simplenote.vim'
-
   Plug 'godlygeek/tabular'
-  " Plug 'plasticboy/vim-markdown'
   Plug 'gabrielelana/vim-markdown'
-
-  " if has('nvim')
-    " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  " else
-    " Plug 'Shougo/deoplete.nvim'
-    " Plug 'roxma/nvim-yarp'
-    " Plug 'roxma/vim-hug-neovim-rpc'
-  " endif
-
   Plug 'kblin/vim-fountain'
-  " Plug 'zchee/deoplete-clang'
-  " Plug 'padawan-php/deoplete-padawan', { 'do': 'composer install' }
-  " Plug 'zchee/deoplete-jedi'
   Plug 'mattn/emmet-vim'
-  " Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
   Plug 'rstacruz/vim-closer'
   Plug 'neomake/neomake'
   Plug 'junegunn/limelight.vim'
@@ -60,39 +42,10 @@ set background=dark " for the dark version
 
 " Color Scheme
 let g:one_allow_italics = 1 " I love italic for comments<Paste>
-" let g:gruvbox_italic=1
 colorscheme one
-"let g:one_allow_italics = 1 " I love italic for comments<Paste>
-" colorscheme gruvbox
 
-
-let g:airline_powerline_fonts = 1
-" let g:airline_theme='gruvbox'
-""""""  " \ 'colorscheme': 'one',
-" Lightline
-" let g:lightline = {
-"   \ 'colorscheme': 'one',
-"   \   'active': {
-"   \     'left':[ [ 'mode', 'paste' ],
-"   \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-"   \     ]
-"   \   },
-" 	\   'component': {
-" 	\     'lineinfo': ' %3l:%-2v',
-" 	\   },
-"   \   'component_function': {
-"   \     'gitbranch': 'fugitive#head',
-"   \   }
-"   \ }
-
-
-" let g:lightline.separator = {
-" 	\   'left': '', 'right': ''
-"   \}
-" let g:lightline.subseparator = {
-" 	\   'left': '', 'right': '' 
-"   \}
-
+" set showtabline=2  " Show tabline
+" set guioptions-=e  " Don't use GUI tabline
 
 " Fundamental settings
 set scrolloff=5
@@ -146,14 +99,7 @@ let g:vim_markdown_conceal = 0
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_fenced_languages = ['csharp=cs', 'ruby=rb', 'vim=vim', 'bash=sh']
 
-" set showtabline=2
-" set guioptions-=e
-
-" set cursorcolumn     "hilight the column of the cursor
-" set nowrap           "no line wrapping
-
 " Mappings
-
 map j gj
 map k gk
 
@@ -188,10 +134,35 @@ map <C-n> :NERDTreeToggle<CR>
 
 " Package Settings
 
-" Deoplete
-" let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-" let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
+let g:lightline = {
+  \   'colorscheme': 'one',
+  \   'active': {
+  \     'left':[ [ 'mode', 'paste' ],
+  \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+  \     ]
+  \   },
+	\   'component': {
+	\     'lineinfo': ' %3l:%-2v',
+	\   },
+  \   'component_function': {
+  \     'gitbranch': 'fugitive#head',
+  \   }
+  \ }
+let g:lightline.separator = {
+	\   'left': '', 'right': ''
+  \}
+let g:lightline.subseparator = {
+	\   'left': '', 'right': '' 
+  \}
+
+let g:lightline.tabline = {
+  \   'left': [ ['tabs'] ],
+  \   'right': [ ['close'] ]
+  \ }
+
+" set showtabline=2  " Show tabline
+" set guioptions-=e  " Don't use GUI tabline
 
 " FZF
 let g:fzf_action = {
@@ -233,12 +204,6 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 " Automake
 call neomake#configure#automake('w')
 
-" Markdown
-" let g:markdown_folding = 1
-" set [no]foldenable
-" let g:vim_markdown_folding_disabled = 1
-" let g:vim_markdown_folding_style_pythonic = 1
-
 let g:fzf_action = {
     \ 'ctrl-s': 'split',
     \ 'ctrl-v': 'vsplit'
@@ -265,8 +230,6 @@ function! s:goyo_leave()
   set showcmd
   set scrolloff=5
   set background=dark
-  " colorscheme gruvbox
-  " colorscheme mine
   Limelight!
 endfunction
 
@@ -274,8 +237,7 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " Use deoplete.
-" let g:deoplete#enable_at_startup = 1
-
+let g:deoplete#enable_at_startup = 1
 
 " Auto-save files
 function s:MkNonExDir(file, buf)
