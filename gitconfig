@@ -1,0 +1,7 @@
+[user]
+	email = duckonomy@gmail.com
+	name = Ian Park
+[credential]
+	helper = cache
+[github]
+	user = duckonomy
