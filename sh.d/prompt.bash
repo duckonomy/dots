@@ -90,7 +90,12 @@ function prompt_command() {
     # $? is a status of last command, should be processed every time prompt prints
     second_line="\`if [ \$? = 0 ]; then echo \[\$MAGENTA\]; else echo \[\$RED\]; fi\`\$prompt_symbol\[\$NOCOLOR\] "
     # PS1="\n$first_line\n$second_line"
-    PS1="$second_line$first_line "
+
+    # PS1="$second_line$first_line "
+
+    PS1="\[\e[1;38m\]\u\[\e[1;34m\]@\[\e[1;31m\]\h\[\e[1;30m\]"
+    PS1="$PS1\[\e[0;38m\] \w$git_prompt\[\e[1;35m\] > \[\e[0m\]"
+
 
     # Multiline command
     # PS2="\[$CYAN\]$prompt_symbol\[$NOCOLOR\] "
