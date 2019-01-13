@@ -2,6 +2,15 @@
 # Basic settings #
 ##################
 
+### If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+### Don't put duplicate lines or lines starting with space in the history.
+HISTCONTROL=ignoreboth
+
 ### Check the window size after each command ($LINES, $COLUMNS)
 [[ $DISPLAY ]] && shopt -s checkwinsize
 
@@ -33,6 +42,8 @@ if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
     alias ls='ls -1F --color=auto'
     alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
 elif [ "$OSTYPE" = darwin ]; then
     alias ls='ls -G'
 fi

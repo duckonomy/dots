@@ -1,1 +1,4 @@
 #!/bin/sh
+rm ~/.bashrc
+rm ~/.bash_profile
+rm ~/.inputrc

@@ -18,6 +18,11 @@ LESSCHARSET=utf-8
 #TZ= Asia/Seoul
 
 
+### for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+
 ### PATH
 PATH=/bin:/sbin:/usr/bin/:/usr/sbin:/usr/local/bin:/usr/local/sbin
 PATH=$PATH:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/bin:$HOME/bin/pkgs:$HOME/.cargo/bin:$HOME/.fzf/bin:$HOME/.cargo/bin:
@@ -44,7 +49,7 @@ GPG_TTY=$(tty)
 
 export LC_COLLATE LC_CTYPE LC_MESSAGES LC_MONETARY LC_NUMERIC \
        LC_TIME LC_ALL LANG LANGUAGE LESSCHARSET PATH GOPATH EDITOR \
-       VISUAL PAGER MANWIDTH TERM CC DEBUGGER TRACER GPG_TTY \
+       VISUAL PAGER MANWIDTH TERM CC DEBUGGER TRACER GPG_TTY HISTSIZE HISTFILESIZE
 
 
 . ~/.bashrc
