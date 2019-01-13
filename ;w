@@ -17,12 +17,12 @@ mkdir -p ~/.vim/
 mkdir -p ~/.sh.d/
 mkdir -p ~/.sh.d/os
 
-ln -sf $BASE/bashrc ~/.bashrc
-ln -sf $BASE/bash_profile ~/.bash_profile
-ln -sf $BASE/inputrc ~/.inputrc
-ln -sf $BASE/tmux.conf ~/.tmux.conf
-ln -sf $BASE/gitconfig ~/.gitconfig
-ln -sf $BASE/ctags ~/.ctags
+ln -sf $BASE/bashrc
+ln -sf $BASE/bash_profile
+ln -sf $BASE/inputrc
+ln -sf $BASE/tmux.conf
+ln -sf $BASE/gitconfig
+ln -sf $BASE/ctags
 ln -sf $BASE/vimrc ~/.vimrc
 ln -sf $BASE/vimrc ~/.config/nvim/init.vim
 ln -sf $BASE/sh.d/prompt.bash ~/.sh.d/prompt.bash
