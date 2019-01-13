@@ -34,7 +34,8 @@ EDITOR=nvim
 VISUAL=$EDITOR
 PAGER='less -R'
 MANWIDTH=80
-TERM=xterm-256color-italic
+# TERM=xterm-256color-italic
+TERM=screen-256color
 
 
 ### Compiler

@@ -42,4 +42,6 @@ ln -sf $BASE/sh.d/os/linux-env.bash $HOME/.sh.d/os/linux-env.bash
 ln -sf $BASE/vimrc ~/.config/nvim/init.vim
 ln -sf ~/.vim/autoload/plug.vim ~/.config/nvim/autoload/
 
+tic $BASE/xterm-256color-italic.terminfo
+
 vim +PlugInstall +qall

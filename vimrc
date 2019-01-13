@@ -32,9 +32,6 @@ highlight htmlArg cterm=italic
 highlight Comment gui=italic
 highlight Comment cterm=italic
 
-set t_8b=^[[48;2;%lu;%lu;%lum
-set t_8f=^[[38;2;%lu;%lu;%lum
-
 " Colors
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
@@ -57,7 +54,6 @@ filetype on
 filetype plugin on
 filetype plugin indent on
 syntax on
-set t_Co=256
 set foldcolumn=2
 set clipboard+=unnamedplus
 set smartindent
@@ -253,4 +249,8 @@ augroup BWCCreateDir
     autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
 
-source ~/.simplenoterc
+" source ~/.simplenoterc
+
+set t_Co=256
+set t_8b=^[[48;2;%lu;%lu;%lum
+set t_8f=^[[38;2;%lu;%lu;%lum
