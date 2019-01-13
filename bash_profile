@@ -57,8 +57,7 @@ export LC_COLLATE LC_CTYPE LC_MESSAGES LC_MONETARY LC_NUMERIC \
 
 ### Auto startx when on linux
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    . ~/.sh.d/os/linux-env.bash
-    if [ -f $HOME/.sh.d/os/linux.bash ]; then
+    if [ -f $HOME/.sh.d/os/linux-env.bash ]; then
        . $HOME/.sh.d/os/linux-env.bash
     fi
 
