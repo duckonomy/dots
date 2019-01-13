@@ -148,7 +148,7 @@ function git-conflicts() {
 
 
 ### Hub (https://github.com/github/hub)
-alias git=hub
+# alias git=hub
 
 ### OS-specific aliases
 if [ -d "$HOME/.sh.d/os" ]; then
