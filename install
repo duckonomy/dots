@@ -2,20 +2,24 @@
 
 BASE=$(pwd)
 
-mkdir ~/.bac
+mkdir ~/.bac 2> /dev/null
 ### Remove files
-mv ~/.bashrc ~/.bac/
-mv ~/.bash_profile ~/.bac/
-mv ~/.inputrc ~/.bac/
-mv ~/.vimrc ~/.bac/
-mv ~/.ctags ~/.bac/
-mv ~/.gitconfig ~/.bac/
-mv ~/.config/nvim/ ~/.bac/
+mv -v ~/.bashrc ~/.bac/ 2> /dev/null
+mv -v ~/.bash_profile ~/.bac/ 2> /dev/null
+mv -v ~/.inputrc ~/.bac/ 2> /dev/null
+mv -v ~/.vimrc ~/.bac/ 2> /dev/null
+mv -v ~/.ctags ~/.bac/ 2> /dev/null
+mv -v ~/.gitconfig ~/.bac/ 2> /dev/null
+mv -v ~/.config/nvim/ ~/.bac/ 2> /dev/null
 
-mkdir -p ~/.config/nvim/
-mkdir -p ~/.vim/
-mkdir -p ~/.sh.d/
-mkdir -p ~/.sh.d/os
+mkdir -p ~/.config/nvim/ 2> /dev/null
+mkdir -p ~/.vim/ 2> /dev/null
+mkdir -p ~/.sh.d/ 2> /dev/null
+mkdir -p ~/.sh.d/os 2> /dev/null
+
+export GIT_SSL_NO_VERIFY=true
+mkdir -p ~/.vim/autoload
+curl --insecure -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim
 
 ln -sf $BASE/bashrc ~/.bashrc
 ln -sf $BASE/bash_profile ~/.bash_profile
@@ -24,11 +28,13 @@ ln -sf $BASE/tmux.conf ~/.tmux.conf
 ln -sf $BASE/gitconfig ~/.gitconfig
 ln -sf $BASE/ctags ~/.ctags
 ln -sf $BASE/vimrc ~/.vimrc
-ln -sf $BASE/vimrc ~/.config/nvim/init.vim
 ln -sf $BASE/sh.d/prompt.bash ~/.sh.d/prompt.bash
 ln -sf $BASE/sh.d/z.sh ~/.sh.d/z.sh
 ln -sf $BASE/sh.d/fzf.bash ~/.sh.d/fzf.bash
 ln -sf $BASE/sh.d/os/linux.bash ~/.sh.d/linux.bash
 ln -sf $BASE/sh.d/os/linux-env.bash ~/.sh.d/linux-env.bash
+
+ln -sf $BASE/vimrc ~/.config/nvim/init.vim
+ln -sf ~/.vim/autoload/plug.vim ~/.config/nvim/autoload/
 
 vim +PlugInstall +qall
