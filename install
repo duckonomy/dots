@@ -3,6 +3,10 @@
 BASE=$(pwd)
 
 mkdir ~/.bac 2> /dev/null
+mkdir ~/.config 2> /dev/null
+mkdir ~/.config/nvim 2> /dev/null
+mkdir ~/.config/nvim/autoload 2> /dev/null
+mkdir ~/.vim/autoload 2> /dev/null
 ### Remove files
 mv -v ~/.bashrc ~/.bac/ 2> /dev/null
 mv -v ~/.bash_profile ~/.bac/ 2> /dev/null
@@ -16,6 +20,8 @@ mv -v ~/.sh.d/os/linux-env.bash ~/.bac/ 2> /dev/null
 mv -v ~/.sh.d/z.sh ~/.bac/ 2> /dev/null
 mv -v ~/.sh.d/prompt.bash ~/.bac/ 2> /dev/null
 mv -v ~/.sh.d/fzf.bash ~/.bac/ 2> /dev/null
+mv -v ~/.vim/autoload/plug.vim  ~/.bac 2> /dev/null
+mv -v ~/.config/nvim/autoload/plug.vim ~/.bac 2> /dev/null
 
 mkdir -p ~/.config/nvim/ 2> /dev/null
 mkdir -p ~/.vim/ 2> /dev/null
@@ -23,7 +29,8 @@ mkdir -p ~/.sh.d/ 2> /dev/null
 mkdir -p ~/.sh.d/os 2> /dev/null
 
 export GIT_SSL_NO_VERIFY=true
-mkdir -p ~/.vim/autoload
+mkdir ~/.vim
+mkdir ~/.vim/autoload
 curl --insecure -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim
 
 ln -sf $BASE/bashrc $HOME/.bashrc
