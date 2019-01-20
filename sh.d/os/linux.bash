@@ -1,5 +1,9 @@
 export DISTRO=$(lsb_release -ds 2>/dev/null || cat /etc/*release 2>/dev/null | head -n1 || uname -om)
 
+#########
+# Alias #
+#########
+
 ### Shortcuts
 alias x="startx"
 alias fcv="fc-cache -vf"
@@ -66,3 +70,66 @@ alias sxiv="sxiv-rifle"
 alias timesync='systemctl restart systemd-timesyncd'
 alias timeset1="sudo ntpdate pool.ntp.org"
 alias timeset2="sudo clockdiff pool.ntp.org"
+
+
+#############
+# Functions #
+#############
+
+if [[ $DISTRO = "Arch" ]]; then
+    # Pacman install
+    function pif {
+        local package_list=`pacman -Ss | sed 'n; d' | cut -d '/' -f 2 | cut -d ' ' -f 1 | fzf -m --header='[pacman:install]'`
+
+        if [[ $package_list ]]; then
+            for prog in $(echo $package_list)
+            do yay -S $prog
+            done
+        fi
+    }
+
+    # Pacman remove
+    function prf {
+        local package_list=`pacman -Qqe | fzf -m --header='[pacman:remove]'`
+
+        if [[ $package_list ]]; then
+            for prog in $(echo $package_list)
+            do yay -Rs $prog
+            done
+        fi
+    }
+
+    # AUR install
+    function piif {
+        local package_list=`wget -P "/tmp/aur/" "https://aur.archlinux.org/packages.gz" &>/dev/null && gunzip -f "/tmp/aur/packages.gz" | sort /tmp/aur/packages | fzf -m --header='[aur:install]'`
+
+        if [[ $package_list ]]; then
+            for prog in $(echo $package_list)
+            do yay -S $prog
+            done
+        fi
+    }
+
+elif [[ $DISTRO = "Ubuntu" ]]; then
+    # Pacman install
+    function pif {
+        local package_list=`apt-cache search . | cut -d ' ' -f 1 | fzf -m --header='[apt:install]'`
+
+        if [[ $package_list ]]; then
+            for prog in $(echo $package_list)
+            do sudo apt install $prog
+            done
+        fi
+    }
+
+    # Pacman remove
+    function prf {
+        local package_list=`dpkg -l | grep "^ii" | awk '{print $2}' | fzf -m --header='[apt:remove]'`
+
+        if [[ $package_list ]]; then
+            for prog in $(echo $package_list)
+            do sudo apt remove $prog
+            done
+        fi
+    }
+fi

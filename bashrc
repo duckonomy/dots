@@ -179,6 +179,127 @@ fzf-down() {
     fzf --height 50% "$@" --border
 }
 
+cani() {
+    local feat=$(ciu | sort -rn | eval "fzf ${FZF_DEFAULT_OPTS} --ansi --header='[caniuse:features]'" | sed -e 's/^.*%\ *//g' | sed -e 's/   .*//g')
+
+    if which caniuse &> /dev/null; then
+        if [[ $feat ]]; then
+           caniuse $feat
+        fi
+    fi
+}
+
+fp() {
+    local loc=$(echo $PATH | sed -e $'s/:/\\\n/g' | eval "fzf ${FZF_DEFAULT_OPTS} --header='[find:path]'")
+
+    if [[ -d $loc ]]; then
+        echo "$(rg --files $loc | rev | cut -d"/" -f1 | rev)" | eval "fzf ${FZF_DEFAULT_OPTS} --header='[find:exe] => ${loc}' >/dev/null"
+        fp
+    fi
+}
+
+kp() {
+    local pid=$(ps -ef | sed 1d | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[kill:process]'" | awk '{print $2}')
+
+    if [ "x$pid" != "x" ]
+    then
+        echo $pid | xargs kill -${1:-9}
+        kp
+    fi
+}
+
+ks() {
+    local pid=$(lsof -Pwni tcp | sed 1d | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[kill:tcp]'" | awk '{print $2}')
+
+    if [ "x$pid" != "x" ]
+    then
+        echo $pid | xargs kill -${1:-9}
+        ks
+    fi
+}
+
+lf() {
+    if hash tree &>/dev/null; then
+        if [[ "x$1" != "x" ]]
+        then
+            local is_first="1"
+            for i
+            do
+                if [[ "$is_first" = "1" ]]
+                then
+                    is_first="0"
+                else
+                    print "\n"
+                fi
+                tree -ahpCI '*git' --dirsfirst $i
+            done
+        else
+            tree -ahpCI '*git' --dirsfirst
+        fi
+    fi
+}
+
+lx() {
+    if hash exa &>/dev/null; then
+        if [[ "x$1" != "x" ]]
+        then
+            local is_first="1"
+            for i
+            do
+                if [[ "$is_first" = "1" ]]
+                then
+                    is_first="0"
+                else
+                    print "\n"
+                fi
+                echo $i
+                exa -aBhg --long --group-directories-first --time-style=long-iso $i
+            done
+        else
+            exa -aBhg --long --group-directories-first --time-style=long-iso
+        fi
+    fi
+}
+
+vmc() {
+    local lang=${1}
+
+    if [[ -z $lang ]]; then
+        lang=$(asdf plugin-list | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[asdf:clean]'")
+    fi
+
+    if [[ $lang ]]; then
+        for lng in $(echo $lang); do
+            for version in $(asdf list $lng | sort -nrk1,1 | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[asdf:${lng}:clean]'")
+            do asdf uninstall $lng $version
+            done
+        done
+    fi
+}
+
+vmi() {
+    local lang=${1}
+    asdf plugin-list-all &>/dev/null 2>&1
+
+    if [[ -z $lang ]]; then
+        lang=$(asdf plugin-list-all | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[asdf:install]'")
+    fi
+
+    if [[ $lang ]]; then
+        for lng in $(echo $lang); do
+            if [[ -z $(asdf plugin-list | rg $lng) ]]; then
+                asdf plugin-add $lng
+            else
+                asdf plugin-update $lng
+            fi
+
+            for version in $(asdf list-all $lng | sort -nrk1,1 | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[asdf:${lng}:install]'")
+            do asdf install $lng $version
+            done
+        done
+    fi
+}
+
 ### When using vi mode
 # set -o vi
 
@@ -233,3 +354,5 @@ function extract {
 . ~/.sh.d/z.sh
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export FZF_DEFAULT_OPTS='--height 40% --reverse'

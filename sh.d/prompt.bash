@@ -1,14 +1,3 @@
-#
-# Clean and minimalistic Bash prompt
-# Author: Artem Sapegin, sapegin.me
-#
-# Inspired by: https://github.com/sindresorhus/pure & https://github.com/dreadatour/dotfiles/blob/master/.bash_profile
-#
-# Notes:
-# - $local_username - username you don’t want to see in the prompt - can be defined in ~/.bashlocal : `local_username="admin"`
-# - Colors ($RED, $GREEN) - defined in ../tilde/bash_profile.bash
-#
-
 RED="$(tput setaf 1)"
 GREEN="$(tput setaf 2)"
 YELLOW="$(tput setaf 3)"
@@ -29,11 +18,7 @@ case $(id -u) in
 esac
 
 # Symbols
-# prompt_symbol="—"
-prompt_symbol="❯"
-prompt_clean_symbol="☀ "
-prompt_dirty_symbol="☂ "
-prompt_venv_symbol="☁ "
+prompt_symbol=" >"
 
 function prompt_command() {
     # Local or SSH session?
@@ -56,10 +41,8 @@ function prompt_command() {
 
         # Format Git info
         if [ -n "$dirty" ]; then
-            # git_prompt=" $RED$prompt_dirty_symbol$branch$NOCOLOR"
             git_prompt=" $RED($branch)$NOCOLOR"
         else
-            # git_prompt=" $GREEN$prompt_clean_symbol$branch$NOCOLOR"
             git_prompt=" $GREEN($branch)$NOCOLOR"
         fi
     fi
@@ -67,38 +50,30 @@ function prompt_command() {
     # Virtualenv
     local venv_prompt=
     if [ -n "$VIRTUAL_ENV" ]; then
-        # venv_prompt=" $BLUE$prompt_venv_symbol$(basename $VIRTUAL_ENV)$NOCOLOR"
-        venv_prompt=" $BLUE$((basename $VIRTUAL_ENV))$NOCOLOR"
+        venv_prompt=" $BLUE($(basename $VIRTUAL_ENV))$NOCOLOR"
     fi
 
     # Only show username if not default
     local user_prompt=
-    [ "$USER" != "$local_username" ] && user_prompt="$user_color$USER$NOCOLOR"
+    [ -n "$remote" ] && [ "$USER" != "$local_username" ] && user_prompt="$user_color$USER$NOCOLOR"
 
     # Show hostname inside SSH session
     local host_prompt=
-    [ -n "$remote" ] && host_prompt="@$YELLOW$HOSTNAME$NOCOLOR"
+    [ -n "$remote" ] && host_prompt="@$CYAN$HOSTNAME$NOCOLOR"
 
     # Show delimiter if user or host visible
     local login_delimiter=
-    [ -n "$user_prompt" ] || [ -n "$host_prompt" ] && login_delimiter=":"
+    [ -n "$user_prompt" ] && [ -n "$host_prompt" ] && login_delimiter=":"
 
     # Format prompt
-    # first_line="$user_prompt$host_prompt$login_delimiter$WHITE\w$NOCOLOR$git_prompt$venv_prompt"
-    first_line="$BLUE\w$NOCOLOR$git_prompt$venv_prompt"
+    first_line="$user_prompt$host_prompt$login_delimiter$YELLOW\w$NOCOLOR$git_prompt$venv_prompt"
     # Text (commands) inside \[...\] does not impact line length calculation which fixes stange bug when looking through the history
     # $? is a status of last command, should be processed every time prompt prints
     second_line="\`if [ \$? = 0 ]; then echo \[\$MAGENTA\]; else echo \[\$RED\]; fi\`\$prompt_symbol\[\$NOCOLOR\] "
-    # PS1="\n$first_line\n$second_line"
-
-    # PS1="$second_line$first_line "
-
-    PS1="\[\e[1;38m\]\u\[\e[1;34m\]@\[\e[1;36m\]\h\[\e[1;30m\]"
-    PS1="$PS1\[\e[0;38m\] \w$git_prompt\[\e[1;35m\] > \[\e[0m\]"
-
+    PS1="$first_line$second_line"
 
     # Multiline command
-    # PS2="\[$CYAN\]$prompt_symbol\[$NOCOLOR\] "
+    PS2="\[$MAGENTA\]$prompt_symbol\[$NOCOLOR\] "
 
     # Terminal title
     local title="$(basename "$PWD")"

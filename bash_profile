@@ -25,7 +25,7 @@ HISTFILESIZE=2000
 
 ### PATH
 PATH=/bin:/sbin:/usr/bin/:/usr/sbin:/usr/local/bin:/usr/local/sbin
-PATH=$PATH:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/.bin:$HOME/bin/pkgs:$HOME/.cargo/bin:$HOME/.fzf/bin:$HOME/.cargo/bin:
+PATH=$PATH:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$HOME/.bin:$HOME/bin/pkgs:$HOME/.cargo/bin:$HOME/.fzf/bin:$HOME/.cargo/bin:$HOME/.cargo/bin:$HOME/bin/npm/bin:
 GOPATH=$HOME/.go
 
 

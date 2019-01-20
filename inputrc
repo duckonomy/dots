@@ -3,8 +3,12 @@ set show-all-if-unmodified on
 set menu-complete-display-prefix on
 set match-hidden-files off
 set completion-query-items 0
+set completion-ignore-case on
 set page-completions off
 set colored-stats on
 
 "\t": menu-complete
 "\e[Z": menu-complete-backward
+
+"\e[A": history-search-backward
+"\e[B": history-search-forward
