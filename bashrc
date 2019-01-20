@@ -231,3 +231,5 @@ function extract {
 
 ### Get z
 . ~/.sh.d/z.sh
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
