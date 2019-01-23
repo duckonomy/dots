@@ -36,6 +36,9 @@ mkdir -p ~/.config/nvim/ 2> /dev/null
 mkdir -p ~/.vim/ 2> /dev/null
 mkdir -p ~/.sh.d/ 2> /dev/null
 mkdir -p ~/.sh.d/os 2> /dev/null
+mkdir -p ~/.zsh.d/ 2> /dev/null
+mkdir -p ~/.zsh.d/os 2> /dev/null
+
 
 export GIT_SSL_NO_VERIFY=true
 mkdir ~/.vim
