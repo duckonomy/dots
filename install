@@ -10,6 +10,9 @@ mkdir ~/.vim/autoload 2> /dev/null
 ### Remove files
 mv -v ~/.bashrc ~/.bac/ 2> /dev/null
 mv -v ~/.bash_profile ~/.bac/ 2> /dev/null
+mv -v ~/.zshrc ~/.bac/ 2> /dev/null
+mv -v ~/.zsh_profile ~/.bac/ 2> /dev/null
+mv -v ~/.profile ~/.bac/ 2> /dev/null
 mv -v ~/.inputrc ~/.bac/ 2> /dev/null
 mv -v ~/.vimrc ~/.bac/ 2> /dev/null
 mv -v ~/.ctags ~/.bac/ 2> /dev/null
@@ -17,9 +20,15 @@ mv -v ~/.gitconfig ~/.bac/ 2> /dev/null
 mv -v ~/.config/nvim/ ~/.bac/ 2> /dev/null
 mv -v ~/.sh.d/os/linux.bash ~/.bac/ 2> /dev/null
 mv -v ~/.sh.d/os/linux-env.bash ~/.bac/ 2> /dev/null
+mv -v ~/.zsh.d/os/linux.zsh ~/.bac/ 2> /dev/null
+mv -v ~/.zsh.d/os/linux-env.zsh ~/.bac/ 2> /dev/null
 mv -v ~/.sh.d/z.sh ~/.bac/ 2> /dev/null
 mv -v ~/.sh.d/prompt.bash ~/.bac/ 2> /dev/null
 mv -v ~/.sh.d/fzf.bash ~/.bac/ 2> /dev/null
+mv -v ~/.zsh.d/prompt.zsh ~/.bac/ 2> /dev/null
+mv -v ~/.zsh.d/fzf.zsh ~/.bac/ 2> /dev/null
+mv -v ~/.zsh.d/antibody/zsh_plugins.sh ~/.bac/ 2> /dev/null
+mv -v ~/.zsh_plugins ~/.bac/ 2> /dev/null
 mv -v ~/.vim/autoload/plug.vim  ~/.bac 2> /dev/null
 mv -v ~/.config/nvim/autoload/plug.vim ~/.bac 2> /dev/null
 
@@ -34,7 +43,8 @@ mkdir ~/.vim/autoload
 curl --insecure -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim
 
 ln -sf $BASE/bashrc $HOME/.bashrc
-ln -sf $BASE/bash_profile $HOME/.bash_profile
+ln -sf $BASE/zshrc $HOME/.zshrc
+ln -sf $BASE/profile $HOME/.profile
 ln -sf $BASE/inputrc $HOME/.inputrc
 ln -sf $BASE/tmux.conf $HOME/.tmux.conf
 ln -sf $BASE/gitconfig $HOME/.gitconfig
@@ -45,6 +55,15 @@ ln -sf $BASE/sh.d/z.sh $HOME/.sh.d/z.sh
 ln -sf $BASE/sh.d/fzf.bash $HOME/.sh.d/fzf.bash
 ln -sf $BASE/sh.d/os/linux.bash $HOME/.sh.d/os/linux.bash
 ln -sf $BASE/sh.d/os/linux-env.bash $HOME/.sh.d/os/linux-env.bash
+
+ln -sf $BASE/zsh.d/prompt.zsh $HOME/.zsh.d/prompt.zsh
+ln -sf $BASE/zsh.d/z.sh $HOME/.zsh.d/z.sh
+ln -sf $BASE/zsh.d/fzf.zsh $HOME/.zsh.d/fzf.zsh
+ln -sf $BASE/zsh.d/os/linux.zsh $HOME/.zsh.d/os/linux.zsh
+ln -sf $BASE/zsh.d/os/linux-env.zsh $HOME/.zsh.d/os/linux-env.zsh
+ln -sf $BASE/zsh.d/antibody/zsh_plugins $HOME/.zsh_plugins
+ln -sf $BASE/zsh.d/antibody/zsh_plugins.sh $HOME/.zsh.d/antibody/zsh_plugins.sh
+
 
 ln -sf $BASE/vimrc ~/.config/nvim/init.vim
 ln -sf ~/.vim/autoload/plug.vim ~/.config/nvim/autoload/

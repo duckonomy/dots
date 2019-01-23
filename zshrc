@@ -10,47 +10,51 @@ esac
 
 ### Don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
-
-### Check the window size after each command ($LINES, $COLUMNS)
-[[ $DISPLAY ]] && shopt -s checkwinsize
-
-### Append to the history file
-shopt -s histappend
-
-### Better-looking less for binary files
-[ -x /usr/bin/lesspipe.sh ] && eval "$(SHELL=/bin/sh lesspipe.sh)"
-
-### Bash completion (ARCH)
-[ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
 
 ### Disable Ctrl-S
 stty -ixon
 
-##########
-# Prompt #
-##########
+setopt appendhistory autocd extendedglob nomatch
+unsetopt beep
+bindkey -e
 
-. ~/.sh.d/prompt.bash
+zstyle ':completion:*' menu select
 
 
 ###########
 # Aliases #
 ###########
-
-### ls variants
-if ! type dircolors > /dev/null; then
-    eval "`dircolors -b`"
-    alias ls='ls -1F --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-elif [ "$OSTYPE" = darwin ]; then
-    alias ls='ls -G'
-fi
+### Colors TODO: Make it check for dircolors present
+alias ls='ls -1F --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+alias anti='antibody bundle < ~/.zsh_plugins > ~/.zsh.d/antibody/.zsh_plugins.sh'
+alias vim='nvim'
+alias v='nvim'
+alias sv='sudo nvim'
+
+
+###############
+# Keybindings #
+###############
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
 ### cd variants
 alias ..='cd ..'
@@ -151,23 +155,23 @@ function git-conflicts() {
 # alias git=hub
 
 ### OS-specific aliases
-if [ -d "$HOME/.sh.d/os" ]; then
+if [ -d "$HOME/.zsh.d/os" ]; then
     if [[ "$OSTYPE" == "linux-gnu" ]]; then
-        . $HOME/.sh.d/os/linux.bash
+        . $HOME/.zsh.d/os/linux.zsh
     elif [[ "$OSTYPE" == "darwin"* ]]; then
-        . $HOME/.sh.d/os/darwin.bash
+        . $HOME/.zsh.d/os/darwin.zsh
     elif [[ "$OSTYPE" == "cygwin" ]]; then
-        . $HOME/.sh.d/os/cygwin.bash
+        . $HOME/.zsh.d/os/cygwin.zsh
     elif [[ "$OSTYPE" == "freebsd"* ]]; then
-        . $HOME/.sh.d/os/freebsd.bash
+        . $HOME/.zsh.d/os/freebsd.zsh
     else
-        . $HOME/.sh.d/os/other
+        . $HOME/.zsh.d/os/other
     fi
 fi
 
 ### Private alias
-if [ -f "$HOME/.sh.d/private.bash" ]; then
-    . $HOME/.sh.d/private.bash
+if [ -f "$HOME/.zsh.d/private.zsh" ]; then
+    . $HOME/.zsh.d/private.zsh
 fi
 
 
@@ -339,9 +343,37 @@ function extract {
 #####
 
 ### Get z
-. ~/.sh.d/z.sh
+. ~/.zsh.d/z.sh
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export FZF_DEFAULT_OPTS='--height 40% --reverse'
 
+###########
+# Plugins #
+###########
+
+. ~/.zsh.d/antibody/zsh_plugins.sh
+
+
+##########
+# Quirks #
+##########
+
+### Various methods of getting making alt-backspace stop at non-alphanumeric
+
+# METHOD 1 : works but longer
+# tcsh-backward-delete-word () {
+#     local WORDCHARS="${WORDCHARS:s#/#}"
+#     zle backward-delete-word
+# }
+
+# zle -N tcsh-backward-delete-word
+# bindkey '^[^?' tcsh-backward-delete-word
+
+# METHOD 2 doesn't work (they say that it should)
+# autoload -U select-word-style
+# select-word-style bash
+
+# METHOD 3
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'

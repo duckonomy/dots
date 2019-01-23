@@ -95,19 +95,6 @@ let g:vim_markdown_conceal = 0
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_fenced_languages = ['csharp=cs', 'ruby=rb', 'vim=vim', 'bash=sh']
 
-" Mappings
-map j gj
-map k gk
-
-nnoremap ; :
-vnoremap ; :
-map ; :
-
-nmap <c-s> :w<CR>
-imap <c-s> <Esc>:w<CR>a
-
-noremap! <C-BS> <C-w>
-noremap! <C-h> <C-w>
 
 " <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
@@ -254,3 +241,19 @@ augroup END
 set t_Co=256
 set t_8b=^[[48;2;%lu;%lu;%lum
 set t_8f=^[[38;2;%lu;%lu;%lum
+
+" Mappings
+map j gj
+map k gk
+
+nnoremap ; :
+vnoremap ; :
+map ; :
+
+nmap <c-s> :w<CR>
+imap <c-s> <Esc>:w<CR>a
+
+noremap! <C-BS> <C-w>
+noremap! <C-h> <C-w>
+
+imap <C-BS> <C-W>
