@@ -1,6 +1,6 @@
-##################
-# Basic settings #
-##################
+###################
+## Basic settings #
+###################
 
 # /etc/zshrc: DO NOT EDIT -- this file has been generated automatically.
 # This file is read for interactive shells.
@@ -10,10 +10,10 @@
 autoload -U compinit && compinit
 
 ### If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+# case $- in
+#     *i*) ;;
+#       *) return;;
+# esac
 
 [ -n "$SSH_CONNECTION" ] && unset SSH_ASKPASS
 export GIT_ASKPASS=
@@ -31,7 +31,46 @@ setopt appendhistory autocd extendedglob nomatch
 unsetopt beep
 bindkey -e
 
+autoload -Uz compinit && compinit
+zstyle ':completion::complete:*' use-cache 1
+# zstyle ':completion::complete:*' cache-path $ZSH_CACHE
 zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' verbose true
+zstyle ':completion:*' rehash true
+zstyle ':completion:*' show-completer true
+zstyle ':completion:*' list-dirs-first true
+zstyle ':completion:*' accept-exact-dirs true
+zstyle ':completion:*:*:cd:*:directory-stack' force-list always
+zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
+zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
+zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+zstyle ':completion:*:corrections' format '%U%F{green}%d (errors: %e)%f%u'
+zstyle ':completion:*:warnings' format '%F{202}%BSorry, no matches for: %F{214}%d%b'
+zstyle ':completion:*:*:*:*:processes' force-list always
+zstyle ':completion:*:*:*:*:processes' menu yes select
+zstyle ':completion:*:*:*:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,args -w -w"
+function _set-list-colors() {
+    zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+    unfunction _set-list-colors
+}
+sched 0 _set-list-colors  # deferred since LC_COLORS might not be available yet
+
+zstyle -e ':completion:*' hosts 'reply=()'
+zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec)|TRAP*)'
+zstyle ':completion:*:*:*:users' ignored-patterns \
+        adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna \
+        clamav daemon dbus distcache dnsmasq dovecot fax ftp games gdm \
+        gkrellmd gopher hacluster haldaemon halt hsqldb ident junkbust kdm \
+        ldap lp mail mailman mailnull man messagebus mldonkey mysql nagios \
+        named netdump news nfsnobody nobody nscd ntp nut nx obsrun openvpn \
+        operator pcap polkitd postfix postgres privoxy pulse pvm quagga radvd \
+        rpc rpcuser rpm rtkit scard shutdown squid sshd statd svn sync tftp \
+        usbmux uucp vcsa wwwrun xfs cron mongodb nullmail portage redis \
+        shoutcast tcpdump '_*'
+zstyle ':completion:*' single-ignored show
 
 
 ###########
@@ -382,13 +421,16 @@ export FZF_DEFAULT_OPTS='--height 40% --reverse'
 # bindkey '^[^?' tcsh-backward-delete-word
 
 # METHOD 2 doesn't work (they say that it should)
-# autoload -U select-word-style
-# select-word-style bash
+autoload -U select-word-style
+select-word-style bash
 
 # METHOD 3
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+<<<<<<< HEAD
 
 if [ "$TERM" != dumb ]; then
     autoload -U promptinit && promptinit && prompt walters
 fi
+=======
+>>>>>>> 9413218e6fbeba988bc2c403670b9e60f1e9f360
 TERM=xterm-256color-italic

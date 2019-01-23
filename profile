@@ -5,17 +5,17 @@
 # fi
 
 ### Language settings
-# LC_COLLATE=en_US.UTF-8
-# LC_CTYPE=en_US.UTF-8
-# LC_MESSAGES=en_US.UTF-8
-# LC_MONETARY=en_US.UTF-8
-# LC_NUMERIC=en_US.UTF-8
-# LC_TIME=en_US.UTF-8
-# LC_ALL=en_US.UTF-8
-# LANG=en_US.UTF-8
-# LANGUAGE=en_US.UTF-8
-# LESSCHARSET=utf-8
-#TZ= Asia/Seoul
+ LC_COLLATE=en_US.UTF-8
+ LC_CTYPE=en_US.UTF-8
+ LC_MESSAGES=en_US.UTF-8
+ LC_MONETARY=en_US.UTF-8
+ LC_NUMERIC=en_US.UTF-8
+ LC_TIME=en_US.UTF-8
+ LC_ALL=en_US.UTF-8
+ LANG=en_US.UTF-8
+ LANGUAGE=en_US.UTF-8
+ LESSCHARSET=utf-8
+# TZ= Asia/Seoul
 
 
 ### for setting history length see HISTSIZE and HISTFILESIZE in bash(1)

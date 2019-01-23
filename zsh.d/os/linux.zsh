@@ -19,7 +19,7 @@ alias umusb="udisksctl unmount --block-device"
 alias musbt="udisksctl mount --block-device /dev/sdb1"
 alias umusbt="udisksctl unmount --block-device /dev/sdb1"
 
-### Pacman
+### Package management
 if [ -f /etc/os-release ]; then
     # freedesktop.org and systemd
     . /etc/os-release
@@ -52,6 +52,9 @@ elif [ "$OS" = 'Ubuntu' ]; then
     alias pa="sudo apt-get install"
     alias u="sudo apt-get update && sudo apt-get upgrade"
     alias rp="sudo apt-get remove"
+elif [ "$OS" = 'NixOS' ]; then
+    alias pa="nix-env -iA nixos."
+    alias clean="nix-collect-garbage -d"
 fi
 
 ### GTK bindings
