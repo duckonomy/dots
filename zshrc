@@ -8,6 +8,9 @@ case $- in
       *) return;;
 esac
 
+[ -n "$SSH_CONNECTION" ] && unset SSH_ASKPASS
+export GIT_ASKPASS=
+
 ### Don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
 HISTFILE=~/.zsh_history

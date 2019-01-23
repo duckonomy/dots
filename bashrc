@@ -8,6 +8,10 @@ case $- in
       *) return;;
 esac
 
+
+[ -n "$SSH_CONNECTION" ] && unset SSH_ASKPASS
+export GIT_ASKPASS=
+
 ### Don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
 
@@ -38,7 +42,7 @@ stty -ixon
 ###########
 
 ### ls variants
-if ! type dircolors > /dev/null; then
+if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
     alias ls='ls -1F --color=auto'
     alias grep='grep --color=auto'
@@ -179,6 +183,16 @@ fzf-down() {
     fzf --height 50% "$@" --border
 }
 
+cani() {
+    local feat=$(ciu | sort -rn | eval "fzf ${FZF_DEFAULT_OPTS} --ansi --header='[caniuse:features]'" | sed -e 's/^.*%\ *//g' | sed -e 's/   .*//g')
+
+    if which caniuse &> /dev/null; then
+        if [[ $feat ]]; then
+           caniuse $feat
+        fi
+    fi
+}
+
 fp() {
     local loc=$(echo $PATH | sed -e $'s/:/\\\n/g' | eval "fzf ${FZF_DEFAULT_OPTS} --header='[find:path]'")
 
@@ -293,6 +307,8 @@ vmi() {
 ### When using vi mode
 # set -o vi
 
+[ -f ~/.sh.d/fzf.bash ] && source ~/.sh.d/fzf.bash
+
 ########################
 # Convenient Functions #
 ########################
@@ -344,4 +360,3 @@ function extract {
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export FZF_DEFAULT_OPTS='--height 40% --reverse'
-
