@@ -25,7 +25,7 @@
 
 ### PATH
 # PATH=/bin:/sbin:/usr/bin/:/usr/sbin:/usr/local/bin:/usr/local/sbin
-# PATH=$HOME/.bin:$HOME/.bin/pkgs:$HOME/.fzf/bin:$HOME/.cargo/bin:$HOME/.bin/npm/bin:$PATH
+PATH="$PATH:$HOME/.bin:$HOME/.bin/pkgs:$HOME/.fzf/bin:$HOME/.cargo/bin:$HOME/.bin/npm/bin"
 # GOPATH=$HOME/.go
 
 
