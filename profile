@@ -34,7 +34,7 @@ PATH="$PATH:$HOME/.bin:$HOME/.bin/pkgs:$HOME/.fzf/bin:$HOME/.cargo/bin:$HOME/.bi
 # VISUAL=$EDITOR
 # PAGER='less -R'
 # MANWIDTH=80
-# TERM=xterm-256color-italic
+TERM=xterm-256color-italic
 # TERM=screen-256color
 
 
@@ -48,7 +48,7 @@ TASKDDATA=$HOME/var/taskd
 ### Other
 # GPG_TTY=$(tty)
 
-export CC DEBUGGER TRACER TASKDDATA
+export CC DEBUGGER TRACER TASKDDATA TERM
 
 
 # export LC_COLLATE LC_CTYPE LC_MESSAGES LC_MONETARY LC_NUMERIC \
