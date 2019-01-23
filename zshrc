@@ -2,6 +2,13 @@
 # Basic settings #
 ##################
 
+# /etc/zshrc: DO NOT EDIT -- this file has been generated automatically.
+# This file is read for interactive shells.
+
+. ~/.zinputrc
+
+autoload -U compinit && compinit
+
 ### If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -380,3 +387,8 @@ export FZF_DEFAULT_OPTS='--height 40% --reverse'
 
 # METHOD 3
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+if [ "$TERM" != dumb ]; then
+    autoload -U promptinit && promptinit && prompt walters
+fi
+TERM=xterm-256color-italic

@@ -360,3 +360,4 @@ function extract {
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export FZF_DEFAULT_OPTS='--height 40% --reverse'
+export TERM=xterm-256color-italic
