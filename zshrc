@@ -5,7 +5,7 @@
 # /etc/zshrc: DO NOT EDIT -- this file has been generated automatically.
 # This file is read for interactive shells.
 
-. ~/.zinputrc
+# . ~/.zinputrc
 
 autoload -U compinit && compinit
 
@@ -426,11 +426,8 @@ select-word-style bash
 
 # METHOD 3
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-<<<<<<< HEAD
 
 if [ "$TERM" != dumb ]; then
     autoload -U promptinit && promptinit && prompt walters
 fi
-=======
->>>>>>> 9413218e6fbeba988bc2c403670b9e60f1e9f360
 TERM=xterm-256color-italic
