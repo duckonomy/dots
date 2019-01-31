@@ -5,16 +5,16 @@
 # fi
 
 ### Language settings
- LC_COLLATE=en_US.UTF-8
- LC_CTYPE=en_US.UTF-8
- LC_MESSAGES=en_US.UTF-8
- LC_MONETARY=en_US.UTF-8
- LC_NUMERIC=en_US.UTF-8
- LC_TIME=en_US.UTF-8
- LC_ALL=en_US.UTF-8
- LANG=en_US.UTF-8
- LANGUAGE=en_US.UTF-8
- LESSCHARSET=utf-8
+LC_COLLATE=en_US.UTF-8
+LC_CTYPE=en_US.UTF-8
+LC_MESSAGES=en_US.UTF-8
+LC_MONETARY=en_US.UTF-8
+LC_NUMERIC=en_US.UTF-8
+LC_TIME=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+LANG=en_US.UTF-8
+LANGUAGE=en_US.UTF-8
+LESSCHARSET=utf-8
 # TZ= Asia/Seoul
 
 
@@ -25,9 +25,9 @@
 
 ### PATH
 # PATH=/bin:/sbin:/usr/bin/:/usr/sbin:/usr/local/bin:/usr/local/sbin
-PATH="$PATH:$HOME/.bin:$HOME/.bin/pkgs:$HOME/.fzf/bin:$HOME/.cargo/bin:$HOME/.bin/npm/bin"
-# GOPATH=$HOME/.go
-
+PATH="$PATH:$HOME/.bin:$HOME/.bin/pkgs:$HOME/.fzf/bin:$HOME/.cargo/bin:$HOME/.npm/bin"
+GOPATH=$HOME/.go
+ePIP_TARGET="$HOME/.pip/bin"
 
 ### Editor
 # EDITOR=nvim
@@ -48,7 +48,7 @@ TASKDDATA=$HOME/var/taskd
 ### Other
 # GPG_TTY=$(tty)
 
-export CC DEBUGGER TRACER TASKDDATA TERM
+export CC DEBUGGER TRACER TASKDDATA TERM PATH GOPATH ePIP_TARGET
 
 
 # export LC_COLLATE LC_CTYPE LC_MESSAGES LC_MONETARY LC_NUMERIC \
