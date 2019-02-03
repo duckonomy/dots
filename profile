@@ -17,26 +17,20 @@ LANGUAGE=en_US.UTF-8
 LESSCHARSET=utf-8
 # TZ= Asia/Seoul
 
-
-### for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-# HISTSIZE=1000
-# HISTFILESIZE=2000
-
-
 ### PATH
 # PATH=/bin:/sbin:/usr/bin/:/usr/sbin:/usr/local/bin:/usr/local/sbin
 PATH="$PATH:$HOME/.bin:$HOME/.bin/pkgs:$HOME/.fzf/bin:$HOME/.cargo/bin:$HOME/.npm/bin"
 GOPATH=$HOME/.go
+R_LIBS_USER="$HOME/.R/x86_64-pc-linux-gnu-library/3.5/"
 ePIP_TARGET="$HOME/.pip/bin"
 
 ### Editor
-# EDITOR=nvim
-# VISUAL=$EDITOR
-# PAGER='less -R'
-# MANWIDTH=80
+EDITOR=nvim
+VISUAL=$EDITOR
+PAGER='less -R'
+MANWIDTH=80
 TERM=xterm-256color-italic
 # TERM=screen-256color
-
 
 ### Compiler
 CC=cc
@@ -44,16 +38,12 @@ DEBUGGER=gdb
 TRACER=strace
 TASKDDATA=$HOME/var/taskd
 
-
 ### Other
 # GPG_TTY=$(tty)
 
-export CC DEBUGGER TRACER TASKDDATA TERM PATH GOPATH ePIP_TARGET
-
-
-# export LC_COLLATE LC_CTYPE LC_MESSAGES LC_MONETARY LC_NUMERIC \
-#        LC_TIME LC_ALL LANG LANGUAGE LESSCHARSET PATH GOPATH EDITOR \
-#        VISUAL PAGER MANWIDTH TERM CC DEBUGGER TRACER GPG_TTY HISTSIZE HISTFILESIZE
+export LC_COLLATE LC_CTYPE LC_MESSAGES LC_MONETARY LC_NUMERIC LC_TIME LC_ALL \
+       LANG LANGUAGE LESSCHARSET PATH GOPATH R_LIBS_USER ePIP_TARGET EDITOR \
+       VISUAL PAGER MANWIDTH TERM CC DEBUGGER TRACER TASKDDATA
 
 
 # . ~/.bashrc

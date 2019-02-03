@@ -133,6 +133,7 @@ alias f="fg"
 alias p="pwd"
 alias w="whoami"
 alias t="tmux"
+alias ta="tmux attach"
 alias Z="exit"
 alias c="clear"
 
@@ -432,4 +433,5 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 if [ "$TERM" != dumb ]; then
     autoload -U promptinit && promptinit && prompt walters
 fi
-TERM=xterm-256color-italic
+
+# TERM=xterm-256color-italic
