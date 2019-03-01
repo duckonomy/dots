@@ -7,12 +7,14 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'itchyny/lightline.vim'
   Plug 'tpope/vim-commentary'
   Plug 'jiangmiao/auto-pairs'
+  Plug 'sheerun/vim-polyglot'
   Plug 'rakr/vim-one'
   Plug 'jceb/vim-orgmode'
   Plug 'easymotion/vim-easymotion'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'mrtazz/simplenote.vim'
   Plug 'godlygeek/tabular'
+  Plug 'chriskempson/base16-vim'
   Plug 'gabrielelana/vim-markdown'
   Plug 'kblin/vim-fountain'
   Plug 'mattn/emmet-vim'
@@ -33,13 +35,17 @@ highlight Comment gui=italic
 highlight Comment cterm=italic
 
 " Colors
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let base16colorspace=256  " Access colors present in 256 colorspace
 set termguicolors
 set background=dark " for the dark version
 
 " Color Scheme
-let g:one_allow_italics = 1 " I love italic for comments<Paste>
-colorscheme one
+" let g:one_allow_italics = 1 " I love italic for comments<Paste>
+colorscheme base16-tomorrow-night
+" colorscheme base16-default-dark
+" colorscheme one
 
 " set showtabline=2  " Show tabline
 " set guioptions-=e  " Don't use GUI tabline
@@ -119,7 +125,7 @@ map <C-n> :NERDTreeToggle<CR>
 
 
 let g:lightline = {
-  \   'colorscheme': 'one',
+  \   'colorscheme': 'Tomorrow_Night',
   \   'active': {
   \     'left':[ [ 'mode', 'paste' ],
   \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
@@ -239,8 +245,8 @@ augroup END
 " source ~/.simplenoterc
 
 set t_Co=256
-set t_8b=^[[48;2;%lu;%lu;%lum
-set t_8f=^[[38;2;%lu;%lu;%lum
+"set t_8b=^[[48;2;%lu;%lu;%lum
+"set t_8f=^[[38;2;%lu;%lu;%lum
 
 " Mappings
 map j gj
@@ -257,3 +263,4 @@ noremap! <C-BS> <C-w>
 noremap! <C-h> <C-w>
 
 imap <C-BS> <C-W>
+

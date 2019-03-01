@@ -19,7 +19,7 @@ LESSCHARSET=utf-8
 
 ### PATH
 # PATH=/bin:/sbin:/usr/bin/:/usr/sbin:/usr/local/bin:/usr/local/sbin
-PATH="$PATH:$HOME/.bin:$HOME/.bin/pkgs:$HOME/.fzf/bin:$HOME/.cargo/bin:$HOME/.npm/bin"
+PATH="$PATH:$HOME/.bin:$HOME/.bin/pkgs:$HOME/.fzf/bin:$HOME/.cargo/bin:$HOME/.npm/bin:$HOME/.go/bin"
 GOPATH=$HOME/.go
 R_LIBS_USER="$HOME/.R/x86_64-pc-linux-gnu-library/3.5/"
 ePIP_TARGET="$HOME/.pip/bin"

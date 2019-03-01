@@ -7,6 +7,9 @@
 
 # . ~/.zinputrc
 
+# GEOMETRY_PROMPT_PLUGINS=(virtualenv docker_machine exec_time git hg +rustup)
+GEOMETRY_PROMPT_PLUGINS=(virtualenv exec_time git hg +rustup)
+
 autoload -U compinit && compinit
 
 ### If not running interactively, don't do anything
@@ -23,6 +26,8 @@ HISTCONTROL=ignoreboth
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
+
+TERM=xterm-256color-italic
 
 ### Disable Ctrl-S
 stty -ixon
@@ -408,6 +413,7 @@ export FZF_DEFAULT_OPTS='--height 40% --reverse'
 . ~/.zsh.d/antibody/zsh_plugins.sh
 
 
+
 ##########
 # Quirks #
 ##########
@@ -435,3 +441,5 @@ if [ "$TERM" != dumb ]; then
 fi
 
 # TERM=xterm-256color-italic
+#
+#

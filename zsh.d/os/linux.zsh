@@ -13,6 +13,9 @@ alias sb="sudo systemctl stop bluetooth"
 alias tb="sudo systemctl start bluetooth"
 alias clearjournal="journalctl --vacuum-time=2d"
 
+### github
+alias git="hub"
+
 ### USB
 alias musb="udisksctl mount --block-device"
 alias umusb="udisksctl unmount --block-device"
